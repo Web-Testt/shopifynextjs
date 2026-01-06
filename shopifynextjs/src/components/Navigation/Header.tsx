@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
-import { SearchBar } from './SearchBar';
+import { AdvancedSearchBar } from './AdvancedSearchBar';
 import { CartButton } from '@/components/Cart/CartButton';
 import { AccountDropdown } from './AccountDropdown';
+import { CurrencySelector } from './CurrencySelector';
+import { LanguageSelector } from './LanguageSelector';
 
 export default function Header() {
   return (
@@ -27,15 +29,17 @@ export default function Header() {
           </div>
           <div className="flex items-center space-x-4">
             <div className="hidden lg:block flex-1 max-w-md">
-              <SearchBar />
+              <AdvancedSearchBar />
             </div>
+            <LanguageSelector />
+            <CurrencySelector />
             <ThemeToggle />
             <AccountDropdown />
             <CartButton />
           </div>
         </div>
         <div className="lg:hidden pb-2">
-          <SearchBar />
+          <AdvancedSearchBar />
         </div>
       </div>
     </header>

@@ -30,6 +30,7 @@ export default function Footer() {
               <li><Link href="/returns" className="hover:text-primary">Returns</Link></li>
               <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
               <li><Link href="/privacy" className="hover:text-primary">Privacy</Link></li>
+              <li><Link href="/accessibility" className="hover:text-primary">Accessibility</Link></li>
             </ul>
           </div>
           <div>

@@ -78,3 +78,20 @@ model OrderConfirmation {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
+
+model ErrorLog {
+  id          String   @id @default(cuid())
+  message     String
+  stack       String?
+  digest      String?
+  url         String
+  userAgent   String
+  metadata    Json
+  createdAt   DateTime @default(now())
+}
+
+model Analytics {
+  id        String   @id @default(cuid())
+  data      Json
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive pages
+Disallow: /account/*
+Disallow: /api/*
+Disallow: /auth/*
+
+# Sitemap
+Sitemap: ${NEXT_PUBLIC_SITE_URL}/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 2

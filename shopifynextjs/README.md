@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShopifyNext - Advanced Headless Shopify Storefront
 
-## Getting Started
+This is a production-ready, advanced headless Shopify storefront built with Next.js 15, TypeScript, App Router, and React Server Components.
 
-First, run the development server:
+## 🚀 Getting Started
+
+First, install dependencies and set up your environment:
+
+```bash
+npm install
+cp .env.example .env.local
+# Edit .env.local with your Shopify and database credentials
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📋 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Core E-Commerce Features
+- ✅ Product catalog with faceted search
+- ✅ Product detail pages with variants and galleries
+- ✅ Collections and deals pages
+- ✅ Persistent shopping cart
+- ✅ Shopify hosted checkout integration
+- ✅ Customer accounts with authentication
+- ✅ Order history and tracking
+- ✅ Wishlist and product comparison
+- ✅ Address book management
 
-## Learn More
+### Professional Features
+- ✅ **Advanced Search** with typeahead suggestions
+- ✅ **Product Reviews & Ratings** with star system
+- ✅ **Multi-Currency Support** with 6 major currencies
+- ✅ **Internationalization** with language selector
+- ✅ **GDPR Compliance** with cookie consent
+- ✅ **Accessibility** with WCAG 2.1 AA compliance
+- ✅ **Performance Monitoring** with analytics
+- ✅ **Advanced SEO** with structured data and sitemaps
+- ✅ **Error Handling** with global boundaries
+- ✅ **Maintenance Mode** with countdown
 
-To learn more about Next.js, take a look at the following resources:
+### Technical Stack
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with dark mode
+- **Database**: Prisma ORM with PostgreSQL
+- **Authentication**: NextAuth with JWT
+- **State Management**: React Query
+- **Shopify Integration**: Storefront API + Customer Account API
+- **UI Components**: Radix UI primitives
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Environment Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a `.env.local` file with the following variables:
 
-## Deploy on Vercel
+```env
+# Shopify Configuration
+NEXT_PUBLIC_SHOPIFY_STORE_URL=https://your-store.myshopify.com
+NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=your_token_here
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/shopify_frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Security
+JWT_SECRET=your-super-secret-key-min-32-chars
+NEXTAUTH_SECRET=your-secret-key-min-32-chars
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Features
+NEXT_PUBLIC_ANALYTICS_ENABLED=true
+```
+
+## 📦 Database Setup
+
+Run Prisma migrations:
+
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
+
+### Docker
+
+```dockerfile
+# Dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+## 📝 Professional Features Documentation
+
+For detailed information about all professional features, see:
+
+- [PROFESSIONAL_FEATURES.md](PROFESSIONAL_FEATURES.md)
+
+## 🎯 Project Structure
+
+```
+shopifynextjs/
+├── app/                  # Next.js App Router pages
+├── components/           # Reusable UI components
+├── lib/                  # Core libraries and utilities
+├── prisma/               # Database schema and migrations
+├── public/               # Static assets
+└── styles/               # Global styles
+```
+
+## 🔧 Development Commands
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npx prisma studio` - Open Prisma database GUI
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a pull request
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## 📞 Support
+
+For support, please contact:
+- Email: support@shopifynext.com
+- Issues: GitHub Issues
+
+---
+
+Built with ❤️ using Next.js, Shopify, and TypeScript
