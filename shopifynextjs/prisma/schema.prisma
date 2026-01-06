@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  shopifyId     String?   @unique
+  passwordHash  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  wishlist      Wishlist[]
+  compare       Compare[]
+  returnRequests ReturnRequest[]
+  addresses     Address[]
+  orderConfirmations OrderConfirmation[]
+}
+
+model Wishlist {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId  String
+  variantId  String?
+  createdAt  DateTime @default(now())
+  
+  @@unique([userId, productId, variantId])
+}
+
+model Compare {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productIds String[]
+  createdAt  DateTime @default(now())
+}
+
+model ReturnRequest {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId    String
+  reason     String
+  status     String   @default("PENDING")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Address {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shopifyAddressId String?  @unique
+  isDefault       Boolean  @default(false)
+  addressData     Json
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model OrderConfirmation {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId        String
+  email          String
+  phone          String?
+  whatsapp       String?
+  emailSent      Boolean  @default(false)
+  smsSent        Boolean  @default(false)
+  whatsappSent   Boolean  @default(false)
+  confirmed      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ErrorLog {
+  id          String   @id @default(cuid())
+  message     String
+  stack       String?
+  digest      String?
+  url         String
+  userAgent   String
+  metadata    Json
+  createdAt   DateTime @default(now())
+}
+
+model Analytics {
+  id        String   @id @default(cuid())
+  data      Json
+  createdAt DateTime @default(now())
+}
